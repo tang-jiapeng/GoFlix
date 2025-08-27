@@ -1,13 +1,12 @@
 package main
 
 import (
+	"GoFlix/services/auth/authRpc"
+	"GoFlix/services/auth/internal/config"
+	"GoFlix/services/auth/internal/server"
+	"GoFlix/services/auth/internal/svc"
 	"flag"
 	"fmt"
-
-	"auth/authRpc"
-	"auth/internal/config"
-	"auth/internal/server"
-	"auth/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"

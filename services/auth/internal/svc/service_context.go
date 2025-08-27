@@ -1,7 +1,7 @@
 package svc
 
 import (
-	"auth/internal/config"
+	"GoFlix/services/auth/internal/config"
 	"context"
 	"time"
 

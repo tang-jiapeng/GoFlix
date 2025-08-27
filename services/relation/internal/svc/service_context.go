@@ -1,6 +1,6 @@
 package svc
 
-import "relation/internal/config"
+import "GoFlix/services/relation/internal/config"
 
 type ServiceContext struct {
 	Config config.Config

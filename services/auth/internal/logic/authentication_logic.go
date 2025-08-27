@@ -1,12 +1,11 @@
 package logic
 
 import (
-	"auth/authRpc"
+	"GoFlix/services/auth/authRpc"
+	"GoFlix/services/auth/internal/svc"
 	"context"
 	"encoding/json"
 	"time"
-
-	"auth/internal/svc"
 
 	"github.com/golang-jwt/jwt/v5"
 

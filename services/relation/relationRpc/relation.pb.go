@@ -394,6 +394,50 @@ func (x *ListFollowerReq) GetOffset() int32 {
 	return 0
 }
 
+type ListAllFollowerReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListAllFollowerReq) Reset() {
+	*x = ListAllFollowerReq{}
+	mi := &file_proto_relation_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListAllFollowerReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListAllFollowerReq) ProtoMessage() {}
+
+func (x *ListAllFollowerReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_relation_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListAllFollowerReq.ProtoReflect.Descriptor instead.
+func (*ListAllFollowerReq) Descriptor() ([]byte, []int) {
+	return file_proto_relation_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ListAllFollowerReq) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
 type ListFollowerResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        []int64                `protobuf:"varint,1,rep,packed,name=userId,proto3" json:"userId,omitempty"`
@@ -403,7 +447,7 @@ type ListFollowerResp struct {
 
 func (x *ListFollowerResp) Reset() {
 	*x = ListFollowerResp{}
-	mi := &file_proto_relation_proto_msgTypes[7]
+	mi := &file_proto_relation_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -415,7 +459,7 @@ func (x *ListFollowerResp) String() string {
 func (*ListFollowerResp) ProtoMessage() {}
 
 func (x *ListFollowerResp) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_relation_proto_msgTypes[7]
+	mi := &file_proto_relation_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -428,7 +472,7 @@ func (x *ListFollowerResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListFollowerResp.ProtoReflect.Descriptor instead.
 func (*ListFollowerResp) Descriptor() ([]byte, []int) {
-	return file_proto_relation_proto_rawDescGZIP(), []int{7}
+	return file_proto_relation_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ListFollowerResp) GetUserId() []int64 {
@@ -447,7 +491,7 @@ type GetFollowerNumsReq struct {
 
 func (x *GetFollowerNumsReq) Reset() {
 	*x = GetFollowerNumsReq{}
-	mi := &file_proto_relation_proto_msgTypes[8]
+	mi := &file_proto_relation_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -459,7 +503,7 @@ func (x *GetFollowerNumsReq) String() string {
 func (*GetFollowerNumsReq) ProtoMessage() {}
 
 func (x *GetFollowerNumsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_relation_proto_msgTypes[8]
+	mi := &file_proto_relation_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -472,7 +516,7 @@ func (x *GetFollowerNumsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFollowerNumsReq.ProtoReflect.Descriptor instead.
 func (*GetFollowerNumsReq) Descriptor() ([]byte, []int) {
-	return file_proto_relation_proto_rawDescGZIP(), []int{8}
+	return file_proto_relation_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetFollowerNumsReq) GetUserId() int64 {
@@ -491,7 +535,7 @@ type GetFollowerNumsResp struct {
 
 func (x *GetFollowerNumsResp) Reset() {
 	*x = GetFollowerNumsResp{}
-	mi := &file_proto_relation_proto_msgTypes[9]
+	mi := &file_proto_relation_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -503,7 +547,7 @@ func (x *GetFollowerNumsResp) String() string {
 func (*GetFollowerNumsResp) ProtoMessage() {}
 
 func (x *GetFollowerNumsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_relation_proto_msgTypes[9]
+	mi := &file_proto_relation_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -516,7 +560,7 @@ func (x *GetFollowerNumsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFollowerNumsResp.ProtoReflect.Descriptor instead.
 func (*GetFollowerNumsResp) Descriptor() ([]byte, []int) {
-	return file_proto_relation_proto_rawDescGZIP(), []int{9}
+	return file_proto_relation_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetFollowerNumsResp) GetNums() int64 {
@@ -535,7 +579,7 @@ type GetFollowingNumsReq struct {
 
 func (x *GetFollowingNumsReq) Reset() {
 	*x = GetFollowingNumsReq{}
-	mi := &file_proto_relation_proto_msgTypes[10]
+	mi := &file_proto_relation_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -547,7 +591,7 @@ func (x *GetFollowingNumsReq) String() string {
 func (*GetFollowingNumsReq) ProtoMessage() {}
 
 func (x *GetFollowingNumsReq) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_relation_proto_msgTypes[10]
+	mi := &file_proto_relation_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -560,7 +604,7 @@ func (x *GetFollowingNumsReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFollowingNumsReq.ProtoReflect.Descriptor instead.
 func (*GetFollowingNumsReq) Descriptor() ([]byte, []int) {
-	return file_proto_relation_proto_rawDescGZIP(), []int{10}
+	return file_proto_relation_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetFollowingNumsReq) GetUserId() int64 {
@@ -579,7 +623,7 @@ type GetFollowingNumsResp struct {
 
 func (x *GetFollowingNumsResp) Reset() {
 	*x = GetFollowingNumsResp{}
-	mi := &file_proto_relation_proto_msgTypes[11]
+	mi := &file_proto_relation_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -591,7 +635,7 @@ func (x *GetFollowingNumsResp) String() string {
 func (*GetFollowingNumsResp) ProtoMessage() {}
 
 func (x *GetFollowingNumsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_relation_proto_msgTypes[11]
+	mi := &file_proto_relation_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -604,7 +648,7 @@ func (x *GetFollowingNumsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetFollowingNumsResp.ProtoReflect.Descriptor instead.
 func (*GetFollowingNumsResp) Descriptor() ([]byte, []int) {
-	return file_proto_relation_proto_rawDescGZIP(), []int{11}
+	return file_proto_relation_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetFollowingNumsResp) GetNums() int64 {
@@ -622,7 +666,7 @@ type Empty struct {
 
 func (x *Empty) Reset() {
 	*x = Empty{}
-	mi := &file_proto_relation_proto_msgTypes[12]
+	mi := &file_proto_relation_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -634,7 +678,7 @@ func (x *Empty) String() string {
 func (*Empty) ProtoMessage() {}
 
 func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_relation_proto_msgTypes[12]
+	mi := &file_proto_relation_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -647,7 +691,7 @@ func (x *Empty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Empty.ProtoReflect.Descriptor instead.
 func (*Empty) Descriptor() ([]byte, []int) {
-	return file_proto_relation_proto_rawDescGZIP(), []int{12}
+	return file_proto_relation_proto_rawDescGZIP(), []int{13}
 }
 
 var File_proto_relation_proto protoreflect.FileDescriptor
@@ -676,7 +720,9 @@ const file_proto_relation_proto_rawDesc = "" +
 	"\x0flistFollowerReq\x12\x16\n" +
 	"\x06userId\x18\x01 \x01(\x03R\x06userId\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\x03 \x01(\x05R\x06offset\"*\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\",\n" +
+	"\x12listAllFollowerReq\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\x03R\x06userId\"*\n" +
 	"\x10listFollowerResp\x12\x16\n" +
 	"\x06userId\x18\x01 \x03(\x03R\x06userId\",\n" +
 	"\x12getFollowerNumsReq\x12\x16\n" +
@@ -687,13 +733,14 @@ const file_proto_relation_proto_rawDesc = "" +
 	"\x06userId\x18\x01 \x01(\x03R\x06userId\"*\n" +
 	"\x14getFollowingNumsResp\x12\x12\n" +
 	"\x04nums\x18\x01 \x01(\x03R\x04nums\"\a\n" +
-	"\x05Empty2\x9f\x04\n" +
+	"\x05Empty2\xf2\x04\n" +
 	"\x0fRelationService\x124\n" +
 	"\x06follow\x12\x16.relationRpc.followReq\x1a\x12.relationRpc.Empty\x12@\n" +
 	"\fcancelFollow\x12\x1c.relationRpc.cancelFollowReq\x1a\x12.relationRpc.Empty\x12N\n" +
 	"\rlistFollowing\x12\x1d.relationRpc.listFollowingReq\x1a\x1e.relationRpc.listFollowingResp\x12H\n" +
 	"\visFollowing\x12\x1b.relationRpc.isFollowingReq\x1a\x1c.relationRpc.isFollowingResp\x12K\n" +
-	"\flistFollower\x12\x1c.relationRpc.listFollowerReq\x1a\x1d.relationRpc.listFollowerResp\x12W\n" +
+	"\flistFollower\x12\x1c.relationRpc.listFollowerReq\x1a\x1d.relationRpc.listFollowerResp\x12Q\n" +
+	"\x0flistAllFollower\x12\x1f.relationRpc.listAllFollowerReq\x1a\x1d.relationRpc.listFollowerResp\x12W\n" +
 	"\x10getFollowingNums\x12 .relationRpc.getFollowingNumsReq\x1a!.relationRpc.getFollowingNumsResp\x12T\n" +
 	"\x0fgetFollowerNums\x12\x1f.relationRpc.getFollowerNumsReq\x1a .relationRpc.getFollowerNumsRespB\x0fZ\r./relationRpcb\x06proto3"
 
@@ -709,7 +756,7 @@ func file_proto_relation_proto_rawDescGZIP() []byte {
 	return file_proto_relation_proto_rawDescData
 }
 
-var file_proto_relation_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_proto_relation_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_proto_relation_proto_goTypes = []any{
 	(*FollowReq)(nil),            // 0: relationRpc.followReq
 	(*CancelFollowReq)(nil),      // 1: relationRpc.cancelFollowReq
@@ -718,12 +765,13 @@ var file_proto_relation_proto_goTypes = []any{
 	(*IsFollowingReq)(nil),       // 4: relationRpc.isFollowingReq
 	(*IsFollowingResp)(nil),      // 5: relationRpc.isFollowingResp
 	(*ListFollowerReq)(nil),      // 6: relationRpc.listFollowerReq
-	(*ListFollowerResp)(nil),     // 7: relationRpc.listFollowerResp
-	(*GetFollowerNumsReq)(nil),   // 8: relationRpc.getFollowerNumsReq
-	(*GetFollowerNumsResp)(nil),  // 9: relationRpc.getFollowerNumsResp
-	(*GetFollowingNumsReq)(nil),  // 10: relationRpc.getFollowingNumsReq
-	(*GetFollowingNumsResp)(nil), // 11: relationRpc.getFollowingNumsResp
-	(*Empty)(nil),                // 12: relationRpc.Empty
+	(*ListAllFollowerReq)(nil),   // 7: relationRpc.listAllFollowerReq
+	(*ListFollowerResp)(nil),     // 8: relationRpc.listFollowerResp
+	(*GetFollowerNumsReq)(nil),   // 9: relationRpc.getFollowerNumsReq
+	(*GetFollowerNumsResp)(nil),  // 10: relationRpc.getFollowerNumsResp
+	(*GetFollowingNumsReq)(nil),  // 11: relationRpc.getFollowingNumsReq
+	(*GetFollowingNumsResp)(nil), // 12: relationRpc.getFollowingNumsResp
+	(*Empty)(nil),                // 13: relationRpc.Empty
 }
 var file_proto_relation_proto_depIdxs = []int32{
 	0,  // 0: relationRpc.RelationService.follow:input_type -> relationRpc.followReq
@@ -731,17 +779,19 @@ var file_proto_relation_proto_depIdxs = []int32{
 	2,  // 2: relationRpc.RelationService.listFollowing:input_type -> relationRpc.listFollowingReq
 	4,  // 3: relationRpc.RelationService.isFollowing:input_type -> relationRpc.isFollowingReq
 	6,  // 4: relationRpc.RelationService.listFollower:input_type -> relationRpc.listFollowerReq
-	10, // 5: relationRpc.RelationService.getFollowingNums:input_type -> relationRpc.getFollowingNumsReq
-	8,  // 6: relationRpc.RelationService.getFollowerNums:input_type -> relationRpc.getFollowerNumsReq
-	12, // 7: relationRpc.RelationService.follow:output_type -> relationRpc.Empty
-	12, // 8: relationRpc.RelationService.cancelFollow:output_type -> relationRpc.Empty
-	3,  // 9: relationRpc.RelationService.listFollowing:output_type -> relationRpc.listFollowingResp
-	5,  // 10: relationRpc.RelationService.isFollowing:output_type -> relationRpc.isFollowingResp
-	7,  // 11: relationRpc.RelationService.listFollower:output_type -> relationRpc.listFollowerResp
-	11, // 12: relationRpc.RelationService.getFollowingNums:output_type -> relationRpc.getFollowingNumsResp
-	9,  // 13: relationRpc.RelationService.getFollowerNums:output_type -> relationRpc.getFollowerNumsResp
-	7,  // [7:14] is the sub-list for method output_type
-	0,  // [0:7] is the sub-list for method input_type
+	7,  // 5: relationRpc.RelationService.listAllFollower:input_type -> relationRpc.listAllFollowerReq
+	11, // 6: relationRpc.RelationService.getFollowingNums:input_type -> relationRpc.getFollowingNumsReq
+	9,  // 7: relationRpc.RelationService.getFollowerNums:input_type -> relationRpc.getFollowerNumsReq
+	13, // 8: relationRpc.RelationService.follow:output_type -> relationRpc.Empty
+	13, // 9: relationRpc.RelationService.cancelFollow:output_type -> relationRpc.Empty
+	3,  // 10: relationRpc.RelationService.listFollowing:output_type -> relationRpc.listFollowingResp
+	5,  // 11: relationRpc.RelationService.isFollowing:output_type -> relationRpc.isFollowingResp
+	8,  // 12: relationRpc.RelationService.listFollower:output_type -> relationRpc.listFollowerResp
+	8,  // 13: relationRpc.RelationService.listAllFollower:output_type -> relationRpc.listFollowerResp
+	12, // 14: relationRpc.RelationService.getFollowingNums:output_type -> relationRpc.getFollowingNumsResp
+	10, // 15: relationRpc.RelationService.getFollowerNums:output_type -> relationRpc.getFollowerNumsResp
+	8,  // [8:16] is the sub-list for method output_type
+	0,  // [0:8] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -758,7 +808,7 @@ func file_proto_relation_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_relation_proto_rawDesc), len(file_proto_relation_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

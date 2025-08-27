@@ -9,6 +9,7 @@ service RelationService {
   rpc listFollowing(listFollowingReq)returns(listFollowingResp);
   rpc isFollowing(isFollowingReq)returns(isFollowingResp);
   rpc listFollower(listFollowerReq)returns(listFollowerResp);
+  rpc listAllFollower(listAllFollowerReq)returns(listFollowerResp);
   rpc getFollowingNums(getFollowingNumsReq)returns(getFollowingNumsResp);
   rpc getFollowerNums(getFollowerNumsReq)returns(getFollowerNumsResp);
 }
@@ -18,12 +19,12 @@ message followReq {
   int64 followId = 2;
 }
 
-message cancelFollowReq {
+message cancelFollowReq{
   int64 userId = 1;
   int64 followId = 2;
 }
 
-message listFollowingReq {
+message listFollowingReq{
   int64 userId = 1;
   bool all = 2;
   int32 limit = 3;
@@ -34,22 +35,26 @@ message listFollowingResp{
   repeated int64 userId = 1;
 }
 
-message isFollowingReq {
+message isFollowingReq{
   int64 userId = 1;
-  int64  followId = 2;
+  int64 followId = 2;
 }
 
-message isFollowingResp {
+message isFollowingResp{
   bool is = 1;
 }
 
-message listFollowerReq {
+message listFollowerReq{
   int64 userId = 1;
   int32 limit = 2;
   int32 offset = 3;
 }
 
-message listFollowerResp {
+message listAllFollowerReq{
+  int64 userId=1;
+}
+
+message listFollowerResp{
   repeated int64 userId = 1;
 }
 

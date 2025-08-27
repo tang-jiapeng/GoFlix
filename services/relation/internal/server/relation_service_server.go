@@ -7,9 +7,9 @@ package server
 import (
 	"context"
 
-	"relation/internal/logic"
-	"relation/internal/svc"
-	"relation/relationRpc"
+	"GoFlix/services/relation/internal/logic"
+	"GoFlix/services/relation/internal/svc"
+	"GoFlix/services/relation/relationRpc"
 )
 
 type RelationServiceServer struct {
@@ -46,6 +46,11 @@ func (s *RelationServiceServer) IsFollowing(ctx context.Context, in *relationRpc
 func (s *RelationServiceServer) ListFollower(ctx context.Context, in *relationRpc.ListFollowerReq) (*relationRpc.ListFollowerResp, error) {
 	l := logic.NewListFollowerLogic(ctx, s.svcCtx)
 	return l.ListFollower(in)
+}
+
+func (s *RelationServiceServer) ListAllFollower(ctx context.Context, in *relationRpc.ListAllFollowerReq) (*relationRpc.ListFollowerResp, error) {
+	l := logic.NewListAllFollowerLogic(ctx, s.svcCtx)
+	return l.ListAllFollower(in)
 }
 
 func (s *RelationServiceServer) GetFollowingNums(ctx context.Context, in *relationRpc.GetFollowingNumsReq) (*relationRpc.GetFollowingNumsResp, error) {

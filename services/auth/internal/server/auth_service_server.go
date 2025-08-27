@@ -7,9 +7,9 @@ package server
 import (
 	"context"
 
-	"auth/authRpc"
-	"auth/internal/logic"
-	"auth/internal/svc"
+	"GoFlix/services/auth/authRpc"
+	"GoFlix/services/auth/internal/logic"
+	"GoFlix/services/auth/internal/svc"
 )
 
 type AuthServiceServer struct {

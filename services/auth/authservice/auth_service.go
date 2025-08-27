@@ -7,7 +7,7 @@ package authservice
 import (
 	"context"
 
-	"auth/authRpc"
+	"GoFlix/services/auth/authRpc"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

@@ -3,8 +3,8 @@ package logic
 import (
 	"context"
 
-	"relation/internal/svc"
-	"relation/relationRpc"
+	"GoFlix/services/relation/internal/svc"
+	"GoFlix/services/relation/relationRpc"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

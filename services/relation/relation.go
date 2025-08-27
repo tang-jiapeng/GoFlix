@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"relation/internal/config"
-	"relation/internal/server"
-	"relation/internal/svc"
-	"relation/relationRpc"
+	"GoFlix/services/relation/internal/config"
+	"GoFlix/services/relation/internal/server"
+	"GoFlix/services/relation/internal/svc"
+	"GoFlix/services/relation/relationRpc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"

@@ -1,13 +1,12 @@
 package logic
 
 import (
+	"GoFlix/services/auth/authRpc"
+	"GoFlix/services/auth/internal/svc"
 	"context"
 	"encoding/json"
 	"errors"
 	"time"
-
-	"auth/authRpc"
-	"auth/internal/svc"
 
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/zeromicro/go-zero/core/logx"

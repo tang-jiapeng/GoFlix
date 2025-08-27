@@ -1,12 +1,11 @@
 package logic
 
 import (
+	"GoFlix/services/auth/authRpc"
+	"GoFlix/services/auth/internal/svc"
 	"context"
 	"errors"
 	"time"
-
-	"auth/authRpc"
-	"auth/internal/svc"
 
 	"github.com/redis/go-redis/v9"
 	"github.com/zeromicro/go-zero/core/logx"
