@@ -1,11 +1,17 @@
 package logic
 
 import (
+	"GoFlix/common/model/database"
+	"GoFlix/common/util"
 	"context"
+	"errors"
+	"strconv"
+	"time"
 
 	"GoFlix/services/relation/internal/svc"
 	"GoFlix/services/relation/relationRpc"
 
+	"github.com/redis/go-redis/v9"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -24,7 +30,54 @@ func NewGetFollowerNumsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *G
 }
 
 func (l *GetFollowerNumsLogic) GetFollowerNums(in *relationRpc.GetFollowerNumsReq) (*relationRpc.GetFollowerNumsResp, error) {
-	// todo: add your logic here and delete this line
+	db := l.svcCtx.DB
+	logger := util.SetTrace(context.Background(), l.svcCtx.Logger)
+	client := l.svcCtx.RClient
 
-	return &relationRpc.GetFollowerNumsResp{}, nil
+	key := "FollowerNums:" + strconv.FormatInt(in.UserId, 10)
+
+	logger.Info("GetFollowerNums", "userid", in.UserId)
+	timeout, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+
+	res, err := client.Get(timeout, key).Result()
+	if err != nil && !errors.Is(err, redis.Nil) {
+		logger.Error("get follower nums from redis:", err.Error())
+		return nil, err
+	}
+	if err == nil {
+		nums, err := strconv.ParseInt(res, 10, 64)
+		if err != nil {
+			logger.Error("parse follower nums:" + err.Error())
+			return nil, err
+		}
+		logger.Debug("get follower nums from redis")
+		return &relationRpc.GetFollowerNumsResp{Nums: nums}, nil
+	}
+
+	logger.Debug("not found follower nums from redis")
+
+	record, err := l.svcCtx.Single.Do("GetFollowerNums:"+strconv.FormatInt(in.UserId, 10), func() (interface{}, error) {
+		record := &database.FollowerNums{}
+		timeout, cancel := context.WithTimeout(context.Background(), time.Second)
+		defer cancel()
+
+		err = db.WithContext(timeout).Take(record, in.UserId).Error
+		if err != nil {
+			return 0, err
+		}
+
+		err = client.Set(timeout, key, record.Nums, time.Minute*5).Err()
+		if err != nil {
+			logger.Warn("set follower nums to redis:" + err.Error())
+		}
+		return record, nil
+	})
+	if err != nil {
+		logger.Error("get follower nums from database:" + err.Error())
+		return nil, err
+	}
+	return &relationRpc.GetFollowerNumsResp{
+		Nums: record.(*database.FollowingNums).Nums,
+	}, nil
 }
