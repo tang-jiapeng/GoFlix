@@ -42,3 +42,8 @@ func (s *AuthServiceServer) CreateVoucher(ctx context.Context, in *authRpc.Creat
 	l := logic.NewCreateVoucherLogic(ctx, s.svcCtx)
 	return l.CreateVoucher(in)
 }
+
+func (s *AuthServiceServer) IsActive(ctx context.Context, in *authRpc.IsActiveReq) (*authRpc.IsActiveResp, error) {
+	l := logic.NewIsActiveLogic(ctx, s.svcCtx)
+	return l.IsActive(in)
+}

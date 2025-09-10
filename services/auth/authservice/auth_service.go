@@ -20,6 +20,8 @@ type (
 	CreateVoucherResp  = authRpc.CreateVoucherResp
 	DeleteSessionReq   = authRpc.DeleteSessionReq
 	DeleteSessionResp  = authRpc.DeleteSessionResp
+	IsActiveReq        = authRpc.IsActiveReq
+	IsActiveResp       = authRpc.IsActiveResp
 	RefreshSessionReq  = authRpc.RefreshSessionReq
 	RefreshSessionResp = authRpc.RefreshSessionResp
 
@@ -28,6 +30,7 @@ type (
 		RefreshSession(ctx context.Context, in *RefreshSessionReq, opts ...grpc.CallOption) (*RefreshSessionResp, error)
 		DeleteSession(ctx context.Context, in *DeleteSessionReq, opts ...grpc.CallOption) (*DeleteSessionResp, error)
 		CreateVoucher(ctx context.Context, in *CreateVoucherReq, opts ...grpc.CallOption) (*CreateVoucherResp, error)
+		IsActive(ctx context.Context, in *IsActiveReq, opts ...grpc.CallOption) (*IsActiveResp, error)
 	}
 
 	defaultAuthService struct {
@@ -59,4 +62,9 @@ func (m *defaultAuthService) DeleteSession(ctx context.Context, in *DeleteSessio
 func (m *defaultAuthService) CreateVoucher(ctx context.Context, in *CreateVoucherReq, opts ...grpc.CallOption) (*CreateVoucherResp, error) {
 	client := authRpc.NewAuthServiceClient(m.cli.Conn())
 	return client.CreateVoucher(ctx, in, opts...)
+}
+
+func (m *defaultAuthService) IsActive(ctx context.Context, in *IsActiveReq, opts ...grpc.CallOption) (*IsActiveResp, error) {
+	client := authRpc.NewAuthServiceClient(m.cli.Conn())
+	return client.IsActive(ctx, in, opts...)
 }

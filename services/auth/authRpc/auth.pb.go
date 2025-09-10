@@ -405,6 +405,94 @@ func (x *CreateVoucherResp) GetToken() string {
 	return ""
 }
 
+type IsActiveReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IsActiveReq) Reset() {
+	*x = IsActiveReq{}
+	mi := &file_proto_auth_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsActiveReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsActiveReq) ProtoMessage() {}
+
+func (x *IsActiveReq) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_auth_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsActiveReq.ProtoReflect.Descriptor instead.
+func (*IsActiveReq) Descriptor() ([]byte, []int) {
+	return file_proto_auth_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *IsActiveReq) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type IsActiveResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Is            bool                   `protobuf:"varint,1,opt,name=is,proto3" json:"is,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IsActiveResp) Reset() {
+	*x = IsActiveResp{}
+	mi := &file_proto_auth_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IsActiveResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IsActiveResp) ProtoMessage() {}
+
+func (x *IsActiveResp) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_auth_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IsActiveResp.ProtoReflect.Descriptor instead.
+func (*IsActiveResp) Descriptor() ([]byte, []int) {
+	return file_proto_auth_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *IsActiveResp) GetIs() bool {
+	if x != nil {
+		return x.Is
+	}
+	return false
+}
+
 var File_proto_auth_proto protoreflect.FileDescriptor
 
 const file_proto_auth_proto_rawDesc = "" +
@@ -429,12 +517,17 @@ const file_proto_auth_proto_rawDesc = "" +
 	"\x11CreateVoucherResp\x12\x0e\n" +
 	"\x02ok\x18\x01 \x01(\bR\x02ok\x12\x1c\n" +
 	"\tsessionId\x18\x02 \x01(\tR\tsessionId\x12\x14\n" +
-	"\x05token\x18\x03 \x01(\tR\x05token2\xbb\x02\n" +
+	"\x05token\x18\x03 \x01(\tR\x05token\"%\n" +
+	"\vIsActiveReq\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\x03R\x06userId\"\x1e\n" +
+	"\fIsActiveResp\x12\x0e\n" +
+	"\x02is\x18\x01 \x01(\bR\x02is2\xf6\x02\n" +
 	"\vAuthService\x12K\n" +
 	"\x0eAuthentication\x12\x1a.authRpc.AuthenticationReq\x1a\x1b.authRpc.AuthenticationResp\"\x00\x12K\n" +
 	"\x0eRefreshSession\x12\x1a.authRpc.RefreshSessionReq\x1a\x1b.authRpc.RefreshSessionResp\"\x00\x12H\n" +
 	"\rDeleteSession\x12\x19.authRpc.DeleteSessionReq\x1a\x1a.authRpc.DeleteSessionResp\"\x00\x12H\n" +
-	"\rCreateVoucher\x12\x19.authRpc.CreateVoucherReq\x1a\x1a.authRpc.CreateVoucherResp\"\x00B\vZ\t./authRpcb\x06proto3"
+	"\rCreateVoucher\x12\x19.authRpc.CreateVoucherReq\x1a\x1a.authRpc.CreateVoucherResp\"\x00\x129\n" +
+	"\bIsActive\x12\x14.authRpc.IsActiveReq\x1a\x15.authRpc.IsActiveResp\"\x00B\vZ\t./authRpcb\x06proto3"
 
 var (
 	file_proto_auth_proto_rawDescOnce sync.Once
@@ -448,7 +541,7 @@ func file_proto_auth_proto_rawDescGZIP() []byte {
 	return file_proto_auth_proto_rawDescData
 }
 
-var file_proto_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_proto_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_proto_auth_proto_goTypes = []any{
 	(*AuthenticationReq)(nil),  // 0: authRpc.AuthenticationReq
 	(*AuthenticationResp)(nil), // 1: authRpc.AuthenticationResp
@@ -458,18 +551,22 @@ var file_proto_auth_proto_goTypes = []any{
 	(*RefreshSessionResp)(nil), // 5: authRpc.RefreshSessionResp
 	(*CreateVoucherReq)(nil),   // 6: authRpc.CreateVoucherReq
 	(*CreateVoucherResp)(nil),  // 7: authRpc.CreateVoucherResp
+	(*IsActiveReq)(nil),        // 8: authRpc.IsActiveReq
+	(*IsActiveResp)(nil),       // 9: authRpc.IsActiveResp
 }
 var file_proto_auth_proto_depIdxs = []int32{
 	0, // 0: authRpc.AuthService.Authentication:input_type -> authRpc.AuthenticationReq
 	2, // 1: authRpc.AuthService.RefreshSession:input_type -> authRpc.RefreshSessionReq
 	3, // 2: authRpc.AuthService.DeleteSession:input_type -> authRpc.DeleteSessionReq
 	6, // 3: authRpc.AuthService.CreateVoucher:input_type -> authRpc.CreateVoucherReq
-	1, // 4: authRpc.AuthService.Authentication:output_type -> authRpc.AuthenticationResp
-	5, // 5: authRpc.AuthService.RefreshSession:output_type -> authRpc.RefreshSessionResp
-	4, // 6: authRpc.AuthService.DeleteSession:output_type -> authRpc.DeleteSessionResp
-	7, // 7: authRpc.AuthService.CreateVoucher:output_type -> authRpc.CreateVoucherResp
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	8, // 4: authRpc.AuthService.IsActive:input_type -> authRpc.IsActiveReq
+	1, // 5: authRpc.AuthService.Authentication:output_type -> authRpc.AuthenticationResp
+	5, // 6: authRpc.AuthService.RefreshSession:output_type -> authRpc.RefreshSessionResp
+	4, // 7: authRpc.AuthService.DeleteSession:output_type -> authRpc.DeleteSessionResp
+	7, // 8: authRpc.AuthService.CreateVoucher:output_type -> authRpc.CreateVoucherResp
+	9, // 9: authRpc.AuthService.IsActive:output_type -> authRpc.IsActiveResp
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -486,7 +583,7 @@ func file_proto_auth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_auth_proto_rawDesc), len(file_proto_auth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
