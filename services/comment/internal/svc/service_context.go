@@ -46,7 +46,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		ch:     make(chan string, 1024*64),
 	}
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True",
-		"root", "root", "127.0.0.1", "", "goflix",
+		"root", "root", "127.0.0.1", "4000", "goflix",
 	)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {

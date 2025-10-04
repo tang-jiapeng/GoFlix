@@ -1,20 +1,82 @@
 version: '3'
 services:
-  mysql:
-    image: mysql:latest
+#  mysql:
+#    image: mysql:latest
+#    ports:
+#      - "3306:3306"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#      MYSQL_DATABASE: goflix
+#    volumes:
+#      - mysql_data:/var/lib/mysql
+#    networks:
+#      - goflix-network
+#    healthcheck:
+#      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+#      interval: 10s
+#      retries: 3
+
+  # TiDB 核心组件 (pd, tikv, tidb) 保持不变
+  pd:
+    image: pingcap/pd:latest
+    container_name: pd
     ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: goflix
+      - "2379:2379"
     volumes:
-      - mysql_data:/var/lib/mysql
+      - pd_data:/data/pd
+    command:
+      - --name=pd
+      - --client-urls=http://0.0.0.0:2379
+      - --peer-urls=http://0.0.0.0:2380
+      - --advertise-client-urls=http://pd:2379
+      - --advertise-peer-urls=http://pd:2380
+      - --initial-cluster=pd=http://pd:2380
     networks:
       - goflix-network
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      test: [ "CMD", "/pd-ctl", "--pd", "http://localhost:2379", "cluster" ]
       interval: 10s
-      retries: 3
+      timeout: 5s
+      retries: 5
+
+  tikv:
+    image: pingcap/tikv:latest
+    container_name: tikv
+    ports:
+      - "20160:20160"
+    volumes:
+      - tikv_data:/data/tikv
+    command:
+      - --pd-endpoints=pd:2379
+      - --addr=0.0.0.0:20160
+      - --advertise-addr=tikv:20160
+    networks:
+      - goflix-network
+    depends_on:
+      pd:
+        condition: service_healthy
+
+  tidb:
+    image: pingcap/tidb:latest
+    container_name: tidb
+    ports:
+      - "4000:4000"
+      - "10080:10080"
+    command:
+      - --store=tikv
+      - --path=pd:2379
+    networks:
+      - goflix-network
+    depends_on:
+      tikv:
+        condition: service_started
+      pd:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-P", "4000" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   redis:
     image: redis:latest
@@ -35,11 +97,11 @@ services:
     container_name: etcd
     environment:
       - ALLOW_NONE_AUTHENTICATION=yes
-      - ETCD_ADVERTISE_CLIENT_URLS=http://0.0.0.0:2379
-      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379
+      - ETCD_ADVERTISE_CLIENT_URLS=http://0.0.0.0:4379
+      - ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:4379
     ports:
-      - "2379:2379"
-      - "2380:2380"
+      - "4379:4379"
+      - "4380:4380"
     volumes:
       - etcd_data:/bitnami/etcd
     healthcheck:
@@ -55,6 +117,8 @@ networks:
     driver: bridge
 
 volumes:
-  mysql_data:
+#  mysql_data:
+  pd_data:
+  tikv_data:
   redis_data:
   etcd_data:

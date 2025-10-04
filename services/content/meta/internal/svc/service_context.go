@@ -20,8 +20,8 @@ type ServiceContext struct {
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		"root", "root", "127.0.0.1", "3306", "goflix",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True",
+		"root", "root", "127.0.0.1", "4000", "goflix",
 	)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
@@ -38,7 +38,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		SnowflakeConfig: &leaf.SnowflakeConfig{
 			CreatorName: "metaContent.rpc",
 			Addr:        "127.0.0.1:8082",
-			EtcdAddr:    []string{"127.0.0.1:2379"},
+			EtcdAddr:    []string{"127.0.0.1:4379"},
 		},
 	})
 	if err != nil {

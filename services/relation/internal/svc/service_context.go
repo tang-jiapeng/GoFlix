@@ -30,15 +30,15 @@ type ServiceContext struct {
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
-		"root", "root", "127.0.0.1", "3306", "goflix",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True",
+		"root", "root", "127.0.0.1", "4000", "goflix",
 	)
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err.Error())
 	}
 	r := redis.NewClient(&redis.Options{
-		Addr: "127.0.0.1:6379",
+		Addr: "127.0.0.1:6378",
 		DB:   0,
 	})
 	creator, err := leaf.NewCore(leaf.Config{
@@ -46,7 +46,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		SnowflakeConfig: &leaf.SnowflakeConfig{
 			CreatorName: "relation.rpc",
 			Addr:        "127.0.0.1:8081",
-			EtcdAddr:    []string{"127.0.0.1:2379"},
+			EtcdAddr:    []string{"127.0.0.1:4379"},
 		},
 	})
 	if err != nil {
@@ -66,7 +66,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		panic(err.Error())
 	}
 	eClient, err := etcd.New(etcd.Config{
-		Endpoints: []string{"127.0.0.1:2379"},
+		Endpoints: []string{"127.0.0.1:4379"},
 	})
 	if err != nil {
 		panic(err.Error())

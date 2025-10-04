@@ -83,7 +83,7 @@ func (l *GetUserContentListLogic) GetUserContentList(in *publicContentRpc.GetUse
 		set = true
 	}
 
-	list, err = contentListFromMySQL(in.Id, in.TimeStamp, logger, db)
+	list, err = contentListFromTiDB(in.Id, in.TimeStamp, logger, db)
 	if err != nil {
 		return nil, err
 	}
@@ -136,7 +136,7 @@ func contentListFromRedis(arguments ...interface{}) ([][]int64, bool, error) {
 	return res, true, nil
 }
 
-func contentListFromMySQL(arguments ...interface{}) ([][]int64, error) {
+func contentListFromTiDB(arguments ...interface{}) ([][]int64, error) {
 	id := arguments[0].(int64)
 	timestamp := arguments[1].(int64)
 	limit := arguments[2].(int64)
@@ -145,7 +145,7 @@ func contentListFromMySQL(arguments ...interface{}) ([][]int64, error) {
 
 	infos := make([]database.VisibleContentInfo, 0)
 	err := db.Select("id", "created_at").
-		Where("user_id = ? and status = ? and created_at <= ?", id, database.ContentStatusPass, timestamp).
+		Where("userid = ? and status = ? and created_at <= ?", id, database.ContentStatusPass, timestamp).
 		Limit(int(limit)).Find(&infos).Error
 	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
 		logger.Error("get content list from tidb:" + err.Error())
@@ -158,10 +158,10 @@ func contentListFromMySQL(arguments ...interface{}) ([][]int64, error) {
 	res[0] = make([]int64, len(infos))
 	res[1] = make([]int64, len(infos))
 
-	logger.Info("get content list from mysql")
+	logger.Info("get content list from tidb")
 	for i, v := range infos {
 		res[0][i] = v.Id
-		res[1][i] = v.CreateAt
+		res[1][i] = v.CreatedAt
 	}
 
 	return res, nil

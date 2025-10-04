@@ -15,8 +15,8 @@ type VisibleContentInfo struct {
 	LongTextUri  string `gorm:"size:255"`
 	VideoUriList string `gorm:"size:8192"`
 
-	UpdateAt time.Time `gorm:"autoUpdateTime"`
-	CreateAt int64     `gorm:"autoCreateTime:milli"`
+	UpdatedAt time.Time `gorm:"autoUpdateTime"`
+	CreatedAt int64     `gorm:"autoCreateTime:milli"`
 }
 
 type InvisibleContentInfo struct {
